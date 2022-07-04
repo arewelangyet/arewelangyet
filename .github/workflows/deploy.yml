@@ -17,7 +17,7 @@ jobs:
         run: cargo run --verbose -- build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-actions@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
 
