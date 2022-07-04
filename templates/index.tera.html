@@ -1,0 +1,14 @@
+{% extends "base.tera.html" %}
+
+{% block title %}Are We Lang Yet{% endblock %}
+
+{% block content %}
+<h1>Are We Lang Yet? Yes, and constantly rewriting!</h1>
+
+<ul>
+{% for topic in topics %}
+    <li><a href="topics/{{ topic.name }}">{{ topic.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

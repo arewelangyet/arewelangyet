@@ -1,0 +1,24 @@
+topics = [
+    { name = "Lexers", description = "Blah Blah Blah" },
+    { name = "Repl", description = "Blah Blah Blah" },
+]
+
+[[projects]]
+name = "logos"
+topics = ["Lexers"]
+
+[[projects]]
+name = "lrlex"
+topics = ["Lexers"]
+
+[[projects]]
+name = "rustyline"
+topics = ["Repl"]
+
+[[projects]]
+name = "repl-rs"
+topics = ["Repl"]
+
+[[projects]]
+name = "termwiz"
+topics = ["Repl"]

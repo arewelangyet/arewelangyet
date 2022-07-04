@@ -1,0 +1,15 @@
+{% extends "base.tera.html" %}
+
+{% block title %}{{ name }} >> AWLY?{% endblock %}
+
+{% block content %}
+<h1>{{ name }}</h1>
+<p>{{ description }}</p>
+
+<ul>
+{% for project in projects %}
+    <li>{{ project.name}} -{% if project.repo %} <a href="{{ project.repo }}">Repository</a>{% endif %}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
