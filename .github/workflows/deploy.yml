@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: cargo run --verbose -- build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-actions@v4
+        with:
+          folder: build
+
