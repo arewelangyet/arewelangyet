@@ -8,26 +8,43 @@ html, body {
 
     font-family: $sans-serif;
     color: #202020;
+
+    * {
+        margin: 0;
+
+    }
 }
 
 h1 {
-    font-size: 3rem;
+    margin-bottom: 1rem;
+
+    color: #666666;
+    font-size: 2rem;
     font-weight: 400;
 
-    &:strong {
-        font-weight: 500;
+    @media (min-width: 768px) {
+        font-size: 3rem;
     }
 }
 
 h2 {
-    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+
+    font-size: 1.5rem;
     font-weight: 400;
+    @media (min-width: 768px) {
+        font-size: 2rem;
+    }
 }
 
 p, li {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
     line-height: 1.5;
+    @media (min-width: 768px) {
+        font-size: 1.5rem;
+    }
 }
 
 a {
@@ -41,7 +58,20 @@ a {
 }
 
 .content {
-    margin: 0 auto;
-    padding: 2rem 4rem;
     max-width: 56rem;
+
+    margin: 0 auto;
+    padding: 2rem;
+
+    @media (min-width: 768px) {
+        padding: 4rem;
+    }
+}
+
+.tagline {
+    color: #202020;
+    font-size: 3rem;
+    @media (min-width: 768px) {
+        font-size: 4rem;
+    }
 }

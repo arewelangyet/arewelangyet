@@ -6,10 +6,26 @@
 <h1>{{ topic.name }}</h1>
 <p>{{ topic.description }}</p>
 
-<ul>
 {% for project in projects %}
-    <li>{{ project.name}} -{% if project.repo %} <a href="{{ project.repo }}">Repository</a>{% endif %}</li>
+    <h2>{{ project.name }}</h2>
+
+    {% if project.description %}
+        <p>{{ project.description }}</p>
+    {% endif %}
+    
+    <ul>
+        {% if project.repo %}
+            <li><a href="{{ project.repo }}">Repository</a></li>
+        {% endif %}
+
+        {% if project.crates_io %}
+            <li><a href="{{ project.crates_io }}">crates.io</a></li>
+        {% endif %}
+
+        {% if project.docs %}
+            <li><a href="{{ project.docs }}">Documentation</a></li>
+        {% endif %}
+    </ul>
 {% endfor %}
-</ul>
 
 {% endblock %}

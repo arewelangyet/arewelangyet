@@ -95,11 +95,12 @@ fn build_site(target: &Path) {
 
     let topic_dir = target.join("topics");
     fs::create_dir_all(&topic_dir).expect("failed to create the topic directory");
-    fs::write(topic_dir.join("index.html"), topics_home).expect("Failed to create topic page.");
+    fs::write(topic_dir.join("index.html"), topics_home).expect("Failed to create topic home page.");
 
     for (html, topic_name) in topics {
-        let topic_file = topic_dir.join(topic_name).with_extension("html");
-        fs::write(topic_file, html).expect("Failed to write topic page.");
+        let dir = topic_dir.join(topic_name);
+        fs::create_dir_all(&dir).expect("Unable to create topic directory.");
+        fs::write(dir.join("index.html"), html).expect("Failed to write topic page.");
     }
 
     fn copy_dir_all(src: &Path, dst: &Path) -> io::Result<()> {
@@ -120,5 +121,6 @@ fn build_site(target: &Path) {
 }
 
 fn clean_site(target: &Path) {
-    fs::remove_dir_all(target).expect("failed to clean the build directory");
+    // do nothing if the directory doesn't exist
+    fs::remove_dir_all(target).unwrap_or(())
 }
