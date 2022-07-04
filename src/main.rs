@@ -18,12 +18,12 @@ fn main() {
     let opts = cli::parse();
 
     match &opts.command {
-        cli::Commands::Build { target } => build_site(&PathBuf::from(target)),
+        cli::Commands::Build { target, cname } => build_site(&PathBuf::from(target), cname),
         cli::Commands::Clean { target } => clean_site(&PathBuf::from(target)),
     }
 }
 
-fn build_site(target: &Path) {
+fn build_site(target: &Path, cname: &Option<String>) {
     // First of all, load up the ecosystem file.
     let ecosystem =
         ecosystem::parse(ECOSYSTEM_SOURCE_FILE).expect("Failed to parse ecosystem file.");
@@ -118,6 +118,10 @@ fn build_site(target: &Path) {
 
     // Copy in the assets to the target directory as well
     copy_dir_all(ASSET_SOURCE_DIR.as_ref(), &target.join("assets")).expect("Failed to copy assets");
+
+    if let Some(domain) = cname {
+        fs::write(target.join("CNAME"), domain).expect("Failed to create CNAME file");
+    }
 }
 
 fn clean_site(target: &Path) {

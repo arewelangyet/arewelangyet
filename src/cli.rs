@@ -14,6 +14,9 @@ pub enum Commands {
         /// The directory in which to build the site.
         #[clap(default_value = "./build")]
         target: String,
+        /// Generate a CNAME file with the provided domain
+        #[clap(long)]
+        cname: Option<String>,
     },
     /// Clean the build directory.
     Clean {
