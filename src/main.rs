@@ -32,13 +32,30 @@ fn build_site(target: &Path) {
     let tera =
         templates::load(TEMPLATE_SOURCE_GLOB, &ecosystem.topics).expect("Failed to load templates");
 
-    // Build the styles.
+    // Build the stylesheets.
     let css_path = target.join("theme.css");
-    Command::new("sass")
+
+    #[cfg(windows)]
+    const CMD: &str = "npm.cmd";
+    #[cfg(not(windows))]
+    const CMD: &str = "npm";
+
+    let output = Command::new(CMD)
+        .arg("exec")
+        .arg("sass")
         .arg(STYLE_ROOT)
         .arg(css_path)
         .output()
-        .expect("failed to invoke `sass`. make sure it's available on your PATH.");
+        .expect("Failed to invoke `npm`. Make sure it's installed and available on your PATH");
+    if !output.status.success() {
+        eprintln!(
+            "`npm exec sass [args] failed with exit code {}. stdout and stderr are below.",
+            output.status
+        );
+        eprintln!("{}", String::from_utf8(output.stdout).unwrap());
+        eprintln!("{}", String::from_utf8(output.stderr).unwrap());
+        return;
+    }
 
     // Render the templates
     let mut index_config = Context::new();

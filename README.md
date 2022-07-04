@@ -12,8 +12,7 @@ Companion website to [arewewebyet](https://arewewebyet.org), [areweguiyet](https
 
 The easiest way to build this project is via the `cargo run build` command.
 
-You must have `sass` installed to use it. The easiest way to install it is via
-`npm` or a similar tool, with `npm install sass`.
+You must have [`sass`](https://sass-lang.com) installed via npm (`npm install -g sass`).
 
 ## Contributing
 
