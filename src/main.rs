@@ -1,120 +1,59 @@
-use clap::{Parser, Subcommand};
-use serde::{Deserialize, Serialize};
 use std::{
-    fs,
+    fs, io,
     path::{Path, PathBuf},
 };
 use tera::{self, Context};
-use toml;
 
-const DEFAULT_OUTPUT_DIR: &str = "./build";
+mod cli;
+mod ecosystem;
+mod templates;
+
 const TEMPLATE_SOURCE_GLOB: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*.tera.html");
+const ASSET_SOURCE_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/assets");
 const ECOSYSTEM_SOURCE_FILE: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/ecosystem.toml");
 
-#[derive(Parser)]
-#[clap(author, version, about, long_about = None)]
-struct Cli {
-    #[clap(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    Build {
-        #[clap(default_value_t = DEFAULT_OUTPUT_DIR.to_string())]
-        target: String,
-    },
-}
-
-#[derive(Serialize, Deserialize)]
-struct Ecosystem {
-    topics: Vec<Topic>,
-    projects: Vec<Project>,
-}
-
-#[derive(Serialize, Deserialize)]
-struct Project {
-    name: String,
-    repo: Option<String>,
-    crates_io: Option<String>,
-    description: Option<String>,
-    docs: Option<String>,
-    topics: Vec<String>,
-}
-
-#[derive(Serialize, Deserialize)]
-struct Topic {
-    name: String,
-    description: String,
-}
-
 fn main() {
-    let opts: Cli = Cli::parse();
+    let opts = cli::parse();
 
     match &opts.command {
-        Commands::Build { target } => build_site(&PathBuf::from(target)),
+        cli::Commands::Build { target } => build_site(&PathBuf::from(target)),
     }
-}
-
-#[derive(Serialize)]
-struct IndexTemplateArgs<'a> {
-    topics: &'a Vec<Topic>,
-}
-
-#[derive(Serialize)]
-struct TopicTemplateArgs<'a> {
-    name: &'a str,
-    description: &'a str,
-    projects: Vec<&'a Project>,
 }
 
 fn build_site(target: &Path) {
     // First of all, load up the ecosystem file.
-    let ecosystem: Ecosystem =
-        toml::from_slice(&fs::read(ECOSYSTEM_SOURCE_FILE).expect("Failed to read ecosystem.toml"))
-            .expect("Failed to parse ecosystem.toml");
+    let ecosystem =
+        ecosystem::parse(ECOSYSTEM_SOURCE_FILE).expect("Failed to parse ecosystem file.");
 
     // Load in the templates
-    let mut templates =
-        tera::Tera::new(TEMPLATE_SOURCE_GLOB).expect("Failed to parse Tera templates");
-    templates.autoescape_on(vec![".tera.html"]);
+    let tera =
+        templates::load(TEMPLATE_SOURCE_GLOB, &ecosystem.topics).expect("Failed to load templates");
 
-    let index = templates
-        .render(
-            "index.tera.html",
-            &Context::from_serialize(IndexTemplateArgs {
-                topics: &ecosystem.topics,
-            })
-            .unwrap(),
-        )
+    // Render the templates
+    let mut index_config = Context::new();
+    index_config.insert("topics", &ecosystem.topics);
+
+    let index = tera
+        .render("index.tera.html", &index_config)
         .expect("Failed to render index.tera.html");
 
     let mut topics = vec![];
 
     for topic in &ecosystem.topics {
-        let crates: Vec<&Project> = ecosystem
+        let projects: Vec<&ecosystem::Project> = ecosystem
             .projects
             .iter()
-            .filter_map(|c| {
-                if c.topics.contains(&topic.name) {
-                    Some(c)
-                } else {
-                    None
-                }
-            })
+            .filter(|c| c.topics.contains(&topic.id))
             .collect();
 
-        let config = TopicTemplateArgs {
-            name: &topic.name,
-            description: &topic.description,
-            projects: crates,
-        };
+        let mut config = Context::new();
+        config.insert("topic", &topic);
+        config.insert("projects", &projects);
 
         topics.push((
-            templates
-                .render("topic.tera.html", &Context::from_serialize(config).unwrap())
+            tera.render("topic.tera.html", &config)
                 .expect("Failed to render template"),
-            &topic.name,
+            &topic.id,
         ));
     }
 
@@ -129,4 +68,20 @@ fn build_site(target: &Path) {
         fs::create_dir_all(&dir).expect("Unable to create topic directory.");
         fs::write(dir.join("index.html"), html).expect("Failed to write topic page.");
     }
+
+    fn copy_dir_all(src: &Path, dst: &Path) -> io::Result<()> {
+        fs::create_dir_all(&dst)?;
+        for entry in fs::read_dir(src)? {
+            let entry = entry?;
+            if entry.file_type()?.is_dir() {
+                copy_dir_all(&entry.path(), &dst.join(entry.file_name()))?;
+            } else {
+                fs::copy(entry.path(), dst.join(entry.file_name()))?;
+            }
+        }
+        Ok(())
+    }
+
+    // Copy in the assets to the target directory as well
+    copy_dir_all(ASSET_SOURCE_DIR.as_ref(), &target.join("assets")).expect("Failed to copy assets");
 }

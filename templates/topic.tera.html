@@ -1,10 +1,10 @@
 {% extends "base.tera.html" %}
 
-{% block title %}{{ name }} >> AWLY?{% endblock %}
+{% block title %}{{ topic.name }} >> AWLY?{% endblock %}
 
 {% block content %}
-<h1>{{ name }}</h1>
-<p>{{ description }}</p>
+<h1>{{ topic.name }}</h1>
+<p>{{ topic.description }}</p>
 
 <ul>
 {% for project in projects %}

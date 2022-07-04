@@ -7,7 +7,7 @@
 
 <ul>
 {% for topic in topics %}
-    <li><a href="topics/{{ topic.name }}">{{ topic.name }}</a></li>
+    <li><a href="{{ url_for(section='topic', name=topic.id) }}">{{ topic.name }}</a></li>
 {% endfor %}
 </ul>
 

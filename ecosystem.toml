@@ -1,24 +1,31 @@
-topics = [
-    { name = "Lexers", description = "Blah Blah Blah" },
-    { name = "Repl", description = "Blah Blah Blah" },
-]
+[topics.lexers]
+name = "Lexers"
+description = "Blah"
 
-[[projects]]
+[topics.repl]
+name = "Repl"
+description = "Blah"
+
+[topics.regex]
+name = "Regular Expressions"
+description = "Blah"
+
+[[project]]
 name = "logos"
-topics = ["Lexers"]
+topics = ["lexers"]
 
-[[projects]]
+[[project]]
 name = "lrlex"
-topics = ["Lexers"]
+topics = ["lexers"]
 
-[[projects]]
+[[project]]
 name = "rustyline"
-topics = ["Repl"]
+topics = ["repl"]
 
-[[projects]]
+[[project]]
 name = "repl-rs"
-topics = ["Repl"]
+topics = ["repl"]
 
-[[projects]]
+[[project]]
 name = "termwiz"
-topics = ["Repl"]
+topics = ["repl"]
