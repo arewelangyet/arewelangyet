@@ -1,0 +1,12 @@
+{% extends "base.tera.html" %}
+
+{% block title %}Topics{% endblock %}
+
+{% block content %}
+<h1>Topics</h1>
+
+{% for topic in topics %}
+    <h2><a href="{{ url_for(section='topic', name=topic.id) }}">{{ topic.name }}</a></h2>
+    <p>{{ topic.description }}</p>
+{% endfor %}
+{% endblock %}
