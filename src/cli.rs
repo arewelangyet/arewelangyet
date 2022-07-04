@@ -9,7 +9,7 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// Build the site
+    /// Build the site.
     Build {
         /// The directory in which to build the site.
         #[clap(default_value = "./build")]
@@ -17,6 +17,12 @@ pub enum Commands {
         /// Generate a CNAME file with the provided domain
         #[clap(long)]
         cname: Option<String>,
+    },
+    /// Clean the build directory.
+    Clean {
+        /// The directory in which the built files are.
+        #[clap(default_value = "./build")]
+        target: String,
     },
 }
 

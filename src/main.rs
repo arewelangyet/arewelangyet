@@ -1,6 +1,7 @@
 use std::{
     fs, io,
     path::{Path, PathBuf},
+    process::Command,
 };
 use tera::{self, Context};
 
@@ -11,12 +12,14 @@ mod templates;
 const TEMPLATE_SOURCE_GLOB: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*.tera.html");
 const ASSET_SOURCE_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/assets");
 const ECOSYSTEM_SOURCE_FILE: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/ecosystem.toml");
+const STYLE_ROOT: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/assets/scss/theme.scss");
 
 fn main() {
     let opts = cli::parse();
 
     match &opts.command {
         cli::Commands::Build { target, cname } => build_site(&PathBuf::from(target), cname),
+        cli::Commands::Clean { target } => clean_site(&PathBuf::from(target)),
     }
 }
 
@@ -25,9 +28,34 @@ fn build_site(target: &Path, cname: &Option<String>) {
     let ecosystem =
         ecosystem::parse(ECOSYSTEM_SOURCE_FILE).expect("Failed to parse ecosystem file.");
 
-    // Load in the templates
+    // Load in the templates.
     let tera =
         templates::load(TEMPLATE_SOURCE_GLOB, &ecosystem.topics).expect("Failed to load templates");
+
+    // Build the stylesheets.
+    let css_path = target.join("theme.css");
+
+    #[cfg(windows)]
+    const CMD: &str = "npm.cmd";
+    #[cfg(not(windows))]
+    const CMD: &str = "npm";
+
+    let output = Command::new(CMD)
+        .arg("exec")
+        .arg("sass")
+        .arg(STYLE_ROOT)
+        .arg(css_path)
+        .output()
+        .expect("Failed to invoke `npm`. Make sure it's installed and available on your PATH");
+    if !output.status.success() {
+        eprintln!(
+            "`npm exec sass [args] failed with exit code {}. stdout and stderr are below.",
+            output.status
+        );
+        eprintln!("{}", String::from_utf8(output.stdout).unwrap());
+        eprintln!("{}", String::from_utf8(output.stderr).unwrap());
+        return;
+    }
 
     // Render the templates
     let mut index_config = Context::new();
@@ -36,6 +64,10 @@ fn build_site(target: &Path, cname: &Option<String>) {
     let index = tera
         .render("index.tera.html", &index_config)
         .expect("Failed to render index.tera.html");
+
+    let topics_home = tera
+        .render("topics.tera.html", &index_config)
+        .expect("Failed to render topics.tera.html");
 
     let mut topics = vec![];
 
@@ -62,6 +94,8 @@ fn build_site(target: &Path, cname: &Option<String>) {
     fs::write(target.join("index.html"), index).expect("Failed to create index page.");
 
     let topic_dir = target.join("topics");
+    fs::create_dir_all(&topic_dir).expect("failed to create the topic directory");
+    fs::write(topic_dir.join("index.html"), topics_home).expect("Failed to create topic home page.");
 
     for (html, topic_name) in topics {
         let dir = topic_dir.join(topic_name);
@@ -88,4 +122,9 @@ fn build_site(target: &Path, cname: &Option<String>) {
     if let Some(domain) = cname {
         fs::write(target.join("CNAME"), domain).expect("Failed to create CNAME file");
     }
+}
+
+fn clean_site(target: &Path) {
+    // do nothing if the directory doesn't exist
+    fs::remove_dir_all(target).unwrap_or(())
 }

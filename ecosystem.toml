@@ -1,22 +1,35 @@
-[topics.lexers]
-name = "Lexers"
-description = "Blah"
+[topics.lexing]
+name = "Lexing"
+description = "to be written"
+
+[topics.parsing]
+name = "Parsing"
+description = "to be written"
 
 [topics.repl]
-name = "Repl"
-description = "Blah"
-
-[topics.regex]
-name = "Regular Expressions"
-description = "Blah"
+name = "REPL"
+description = "REPLs are a common way to interact with compilers by executing code statement by statement."
 
 [[project]]
 name = "logos"
-topics = ["lexers"]
+description = "Create ridiculously fast lexers."
+repo = "https://github.com/maciejhirsz/logos"
+crates_io = "https://crates.io/crates/logos"
+docs = "https://docs.rs/logos"
+topics = ["lexing"]
 
 [[project]]
 name = "lrlex"
-topics = ["lexers"]
+description = "A partial replacement for lex/flex."
+repo = "https://github.com/softdevteam/grmtools/tree/master/lrlex"
+crates_io = "https://crates.io/crates/lrlex"
+docs = "https://docs.rs/lrlex"
+topics = ["lexing"]
+
+[[project]]
+name = "LALRPOP"
+description = "A convenient LR(1) parser generator."
+topics = ["parsing"]
 
 [[project]]
 name = "rustyline"

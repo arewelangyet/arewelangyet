@@ -1,14 +1,26 @@
 {% extends "base.tera.html" %}
 
-{% block title %}Are We Lang Yet{% endblock %}
+{% block title %}Are We Lang Yet?{% endblock %}
 
 {% block content %}
-<h1>Are We Lang Yet? Yes, and constantly rewriting!</h1>
+<h1>Are we lang yet?</h1>
+<h1 class="tagline">There and thriving.</h1>
 
+<p>
+    blah blah blah
+</p>
+
+<h2>Can I write a compiler in Rust?</h2>
+<p>
+    Absolutely! Multiple production-ready compilers have been written already
+    (see <a href="/showcase">the showcase</a>), and more are sure to come.
+</p>
+
+<h2>In Detail</h2>
+<p>Learn more about the state of language development in Rust by topic:</p>
 <ul>
 {% for topic in topics %}
     <li><a href="{{ url_for(section='topic', name=topic.id) }}">{{ topic.name }}</a></li>
 {% endfor %}
 </ul>
-
 {% endblock %}

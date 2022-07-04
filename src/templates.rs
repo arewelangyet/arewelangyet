@@ -22,7 +22,7 @@ impl UrlFor {
                     .collect::<Vec<&Topic>>()
                     .first()
                 {
-                    Some(topic) => Ok(format!("topics/{}", topic.id)),
+                    Some(topic) => Ok(format!("/topics/{}", topic.id)),
                     None => Err(format!("Unable to find topic {}", spec).into()),
                 }
             }
