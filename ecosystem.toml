@@ -42,3 +42,9 @@ topics = ["repl"]
 [[project]]
 name = "termwiz"
 topics = ["repl"]
+
+[[showcase]]
+name = "AbleScript"
+description = "AbleScript is a procedural, cursed, dynamically-typed, interpreted programming language, designed to be bad."
+repo = "https://git.ablecorp.us/AbleScript/able-script"
+docs = "https://ablecorp.github.io/able-script-the-book/"

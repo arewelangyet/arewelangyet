@@ -1,0 +1,31 @@
+{% extends "base.tera.html" %}
+
+{% block title %}Showcase{% endblock %}
+{% block description %}An index of language development projects.{% endblock %}
+
+{% block content %}
+<h1>Showcase</h1>
+<h2>An index of language development projects.</h2>
+
+{% for exhibit in showcase %}
+    <h2>{{ exhibit.name }}</h2>
+
+    {% if exhibit.description %}
+        <p>{{ exhibit.description }}</p>
+    {% endif %}
+    
+    <ul>
+        {% if exhibit.repo %}
+            <li><a href="{{ exhibit.repo }}">Repository</a></li>
+        {% endif %}
+
+        {% if exhibit.crates_io %}
+            <li><a href="{{ exhibit.crates_io }}">crates.io</a></li>
+        {% endif %}
+
+        {% if exhibit.docs %}
+            <li><a href="{{ exhibit.docs }}">Documentation</a></li>
+        {% endif %}
+    </ul>
+{% endfor %}
+{% endblock %}
