@@ -60,6 +60,7 @@ fn build_site(target: &Path, cname: &Option<String>) {
     // Render the templates
     let mut index_config = Context::new();
     index_config.insert("topics", &ecosystem.topics);
+    index_config.insert("showcase", &ecosystem.showcase);
 
     let index = tera
         .render("index.tera.html", &index_config)
@@ -89,6 +90,10 @@ fn build_site(target: &Path, cname: &Option<String>) {
         ));
     }
 
+    let showcase = tera
+        .render("showcase.tera.html", &index_config)
+        .expect("Failed to render showcase.tera.html");
+
     // Now that templates are rendered, write them to the target directory
     fs::create_dir_all(target).expect("Unable to create target directory");
     fs::write(target.join("index.html"), index).expect("Failed to create index page.");
@@ -102,6 +107,9 @@ fn build_site(target: &Path, cname: &Option<String>) {
         fs::create_dir_all(&dir).expect("Unable to create topic directory.");
         fs::write(dir.join("index.html"), html).expect("Failed to write topic page.");
     }
+
+    fs::create_dir_all(target.join("showcase")).expect("failed to create the showcase directory");
+    fs::write(target.join("showcase/index.html"), showcase).expect("Failed to create showcase page.");
 
     fn copy_dir_all(src: &Path, dst: &Path) -> io::Result<()> {
         fs::create_dir_all(&dst)?;

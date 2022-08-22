@@ -1,9 +1,11 @@
 {% extends "base.tera.html" %}
 
 {% block title %}Topics{% endblock %}
+{% block description %}The state of language development in Rust, by topic.{% endblock %}
 
 {% block content %}
 <h1>Topics</h1>
+<h2>The state of language development in Rust, by topic.</h2>
 
 {% for topic in topics %}
     <h2><a href="{{ url_for(section='topic', name=topic.id) }}">{{ topic.name }}</a></h2>

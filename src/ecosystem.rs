@@ -7,6 +7,7 @@ use std::fs;
 pub struct Ecosystem {
     pub topics: Vec<Topic>,
     pub projects: Vec<Project>,
+    pub showcase: Vec<Exhibit>,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -46,11 +47,21 @@ impl Ord for Topic {
     }
 }
 
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Exhibit {
+    pub name: String,
+    pub repo: Option<String>,
+    pub description: Option<String>,
+    pub crates_io: Option<String>,
+    pub docs: Option<String>,
+}
+
 #[derive(Deserialize)]
 struct EcosystemSrc {
     topics: HashMap<String, TopicSrc>,
     #[serde(rename = "project")]
     projects: Vec<Project>,
+    showcase: Vec<Exhibit>,
 }
 
 #[derive(Deserialize)]
@@ -75,5 +86,6 @@ pub fn parse(source: &str) -> Result<Ecosystem, Box<dyn Error>> {
     Ok(Ecosystem {
         projects: parsed_data.projects,
         topics,
+        showcase: parsed_data.showcase,
     })
 }
