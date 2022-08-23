@@ -13,9 +13,10 @@ pub struct Ecosystem {
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Project {
     pub name: String,
-    pub repo: Option<String>,
-    pub crates_io: Option<String>,
     pub description: Option<String>,
+    pub repo: Option<String>,
+    pub crates: Option<Vec<String>>,
+    // in case there are separate docs, apart from the crates
     pub docs: Option<String>,
     pub topics: Vec<String>,
 }
@@ -52,7 +53,7 @@ pub struct Exhibit {
     pub name: String,
     pub repo: Option<String>,
     pub description: Option<String>,
-    pub crates_io: Option<String>,
+    pub crates: Option<Vec<String>>,
     pub docs: Option<String>,
 }
 

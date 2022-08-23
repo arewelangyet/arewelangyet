@@ -14,33 +14,44 @@ description = "REPLs are a common way to interact with compilers by executing co
 name = "logos"
 description = "Create ridiculously fast lexers."
 repo = "https://github.com/maciejhirsz/logos"
-crates_io = "https://crates.io/crates/logos"
-docs = "https://docs.rs/logos"
+crates = ["logos"]
 topics = ["lexing"]
 
 [[project]]
 name = "lrlex"
 description = "A partial replacement for lex/flex."
 repo = "https://github.com/softdevteam/grmtools/tree/master/lrlex"
-crates_io = "https://crates.io/crates/lrlex"
-docs = "https://docs.rs/lrlex"
+crates = ["lrlex"]
 topics = ["lexing"]
 
 [[project]]
 name = "LALRPOP"
 description = "A convenient LR(1) parser generator."
+repo = "https://github.com/lalrpop/lalrpop"
+crates = ["lalrpop", "lalrpop-util"]
+docs = "https://lalrpop.github.io/lalrpop/"
+topics = ["parsing"]
+
+[[project]]
+name = "chumsky"
+description = " A parser library for humans with powerful error recovery."
+repo = "https://github.com/zesterer/chumsky/"
+crates = ["chumsky"]
+docs = "https://github.com/zesterer/chumsky/blob/master/tutorial.md"
 topics = ["parsing"]
 
 [[project]]
 name = "rustyline"
+description = "A readline implementation in Rust."
+repo = "https://github.com/kkawakam/rustyline"
+crates = ["rustyline"]
 topics = ["repl"]
 
 [[project]]
 name = "repl-rs"
-topics = ["repl"]
-
-[[project]]
-name = "termwiz"
+description = "A library to generate a REPL for your application."
+repo = "https://github.com/jacklund/repl-rs"
+crates = ["repl-rs"]
 topics = ["repl"]
 
 [[showcase]]
