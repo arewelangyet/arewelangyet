@@ -21,7 +21,7 @@ h1 {
 }
 
 h2 {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: 400;
@@ -29,6 +29,18 @@ h2 {
 @media (min-width: 768px) {
   h2 {
     font-size: 2rem;
+  }
+}
+
+h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.5rem;
   }
 }
 
@@ -71,6 +83,11 @@ a:hover {
   .tagline {
     font-size: 4rem;
   }
+}
+
+.icon {
+  margin-left: 0.5rem;
+  margin-bottom: -0.3rem;
 }
 
 /*# sourceMappingURL=theme.css.map */
