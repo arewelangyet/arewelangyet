@@ -8,25 +8,32 @@
 <p>{{ topic.description }}</p>
 
 {% for project in projects %}
-    <h2>{{ project.name }}</h2>
+    <h2>
+        {{ project.name }}
+        {% if project.docs %}
+            <a title="documentation" href="{{ project.docs }}"><img class="icon" src="/assets/icons/home.svg" alt="documentation"></img></a>
+        {% endif %}
+        {% if project.repo %}
+            <a title="repository" href="{{ project.repo }}"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        {% endif %}
+    </h2>
 
     {% if project.description %}
         <p>{{ project.description }}</p>
     {% endif %}
     
+    {% if project.crates %}
+    <h3>Crates:</h3>
     <ul>
-        {% if project.repo %}
-            <li><a href="{{ project.repo }}">Repository</a></li>
-        {% endif %}
-
-        {% if project.crates_io %}
-            <li><a href="{{ project.crates_io }}">crates.io</a></li>
-        {% endif %}
-
-        {% if project.docs %}
-            <li><a href="{{ project.docs }}">Documentation</a></li>
-        {% endif %}
+        {% for crate in project.crates %}
+            <li>
+                {{ crate }}
+                <a title="crates.io link" href="https://crates.io/crates/{{ crate }}"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/{{ crate }}"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        {% endfor %}
     </ul>
+    {% endif %}
 {% endfor %}
 
 {% endblock %}
