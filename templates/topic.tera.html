@@ -11,10 +11,10 @@
     <h2>
         {{ project.name }}
         {% if project.docs %}
-            <a title="documentation" href="{{ project.docs }}"><i class="fa fa-home"></i></a>
+            <a title="documentation" href="{{ project.docs }}"><img class="icon" src="/assets/icons/home.svg" alt="documentation"></img></a>
         {% endif %}
         {% if project.repo %}
-            <a title="repository" href="{{ project.repo }}"><i class="fa fa-code"></i></a>
+            <a title="repository" href="{{ project.repo }}"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
         {% endif %}
     </h2>
 
@@ -22,14 +22,14 @@
         <p>{{ project.description }}</p>
     {% endif %}
     
-    {% if project.crates     > 1 %}
+    {% if project.crates %}
     <h3>Crates:</h3>
     <ul>
         {% for crate in project.crates %}
             <li>
                 {{ crate }}
-                <a title="crates.io link" href="https://crates.io/crates/{{ crate }}"><i class="fa fa-cube"></i></a>
-                <a title="docs.rs link" href="https://docs.rs/{{ crate }}"><i class="fa fa-book"></i></a>
+                <a title="crates.io link" href="https://crates.io/crates/{{ crate }}"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/{{ crate }}"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
             </li>
         {% endfor %}
     </ul>
