@@ -1,14 +1,14 @@
-name: clippy & rustfmt
+name: Lint
 
 on:
   pull_request:
     paths:
-      - '*.rs'
+      - '**.rs'
       - '.github/workflows/rust-lint.yml'
 
 jobs:
   clippy:
-    name: Clippy
+    name: clippy
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -20,10 +20,8 @@ jobs:
           profile: minimal
           components: clippy
 
-      - uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --all-features
+      - name: clippy
+        run: cargo clippy -- -D warnings --no-deps
 
   rustfmt:
     name: rustfmt
