@@ -73,11 +73,13 @@ fn build_site(target: &Path, cname: &Option<String>) {
     let mut topics = vec![];
 
     for topic in &ecosystem.topics {
-        let projects: Vec<&ecosystem::Project> = ecosystem
+        let mut projects: Vec<&ecosystem::Project> = ecosystem
             .projects
             .iter()
             .filter(|c| c.topics.contains(&topic.id))
             .collect();
+
+        projects.sort_by(|a, b| a.name.to_lowercase().cmp(&b.name.to_lowercase()));
 
         let mut config = Context::new();
         config.insert("topic", &topic);
@@ -86,7 +88,7 @@ fn build_site(target: &Path, cname: &Option<String>) {
         topics.push((
             tera.render("topic.tera.html", &config)
                 .expect("Failed to render template"),
-            &topic.id,
+            topic.id.clone(),
         ));
     }
 
