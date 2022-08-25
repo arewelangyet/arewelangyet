@@ -1,5 +1,5 @@
 use std::{
-    fs, io,
+    fs,
     path::{Path, PathBuf},
     process::Command,
 };
@@ -8,6 +8,7 @@ use tera::{self, Context};
 mod cli;
 mod ecosystem;
 mod templates;
+mod utils;
 
 const TEMPLATE_SOURCE_GLOB: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*.tera.html");
 const ASSET_SOURCE_DIR: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/assets");
@@ -115,21 +116,9 @@ fn build_site(target: &Path, cname: &Option<String>) {
     fs::write(target.join("showcase/index.html"), showcase)
         .expect("Failed to create showcase page.");
 
-    fn copy_dir_all(src: &Path, dst: &Path) -> io::Result<()> {
-        fs::create_dir_all(&dst)?;
-        for entry in fs::read_dir(src)? {
-            let entry = entry?;
-            if entry.file_type()?.is_dir() {
-                copy_dir_all(&entry.path(), &dst.join(entry.file_name()))?;
-            } else {
-                fs::copy(entry.path(), dst.join(entry.file_name()))?;
-            }
-        }
-        Ok(())
-    }
-
     // Copy in the assets to the target directory as well
-    copy_dir_all(ASSET_SOURCE_DIR.as_ref(), &target.join("assets")).expect("Failed to copy assets");
+    utils::copy_dir_all(ASSET_SOURCE_DIR.as_ref(), &target.join("assets"))
+        .expect("Failed to copy assets");
 
     if let Some(domain) = cname {
         fs::write(target.join("CNAME"), domain).expect("Failed to create CNAME file");
