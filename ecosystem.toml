@@ -81,7 +81,7 @@ topics = ["runtime"]
 
 [[project]]
 name = "HVM"
-description = "A massively parallel, optimal functional runtime in Rust"
+description = "A massively parallel, optimal functional runtime in Rust."
 repo = "https://github.com/Kindelia/HVM"
 crates = ["hvm"]
 topics = ["runtime"]
