@@ -138,5 +138,5 @@ fn build_site(target: &Path, cname: &Option<String>) {
 
 fn clean_site(target: &Path) {
     // do nothing if the directory doesn't exist
-    fs::remove_dir_all(target).unwrap_or(())
+    fs::remove_dir_all(target).ok();
 }
