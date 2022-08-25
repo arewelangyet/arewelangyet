@@ -102,7 +102,7 @@ docs = "https://doc.rust-lang.org/stable/std/index.html"
 name = "Roc"
 description = "A language for making delightful software. "
 repo = "https://github.com/roc-lang/roc"
-docs = "https://github.com/roc-lang/roc/TUTORIAL.md"
+docs = "https://github.com/roc-lang/roc/blob/main/TUTORIAL.md"
 
 [[showcase]]
 name = "Scryer Prolog"
