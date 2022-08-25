@@ -100,7 +100,7 @@ docs = "https://doc.rust-lang.org/stable/std/index.html"
 
 [[showcase]]
 name = "Roc"
-description = ""
+description = "A language for making delightful software. "
 repo = "https://github.com/roc-lang/roc"
 docs = "https://github.com/roc-lang/roc/TUTORIAL.md"
 
