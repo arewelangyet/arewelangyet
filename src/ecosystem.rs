@@ -1,8 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::cmp::Ordering;
-use std::collections::HashMap;
-use std::error::Error;
-use std::fs;
+use std::{collections::HashMap, error::Error, fs};
 
 #[derive(Deserialize)]
 struct EcosystemSrc {
@@ -62,8 +59,7 @@ pub fn parse(source: &str) -> Result<Ecosystem, Box<dyn Error>> {
             description: v.description.clone(),
         })
         .collect();
-    topics.sort_by(|a, b|
-        a.id.to_lowercase().cmp(&b.id.to_lowercase()));
+    topics.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
 
     Ok(Ecosystem {
         projects: parsed_data.projects,

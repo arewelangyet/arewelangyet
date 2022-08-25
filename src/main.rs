@@ -102,7 +102,8 @@ fn build_site(target: &Path, cname: &Option<String>) {
 
     let topic_dir = target.join("topics");
     fs::create_dir_all(&topic_dir).expect("failed to create the topic directory");
-    fs::write(topic_dir.join("index.html"), topics_home).expect("Failed to create topic home page.");
+    fs::write(topic_dir.join("index.html"), topics_home)
+        .expect("Failed to create topic home page.");
 
     for (html, topic_name) in topics {
         let dir = topic_dir.join(topic_name);
@@ -111,7 +112,8 @@ fn build_site(target: &Path, cname: &Option<String>) {
     }
 
     fs::create_dir_all(target.join("showcase")).expect("failed to create the showcase directory");
-    fs::write(target.join("showcase/index.html"), showcase).expect("Failed to create showcase page.");
+    fs::write(target.join("showcase/index.html"), showcase)
+        .expect("Failed to create showcase page.");
 
     fn copy_dir_all(src: &Path, dst: &Path) -> io::Result<()> {
         fs::create_dir_all(&dst)?;
