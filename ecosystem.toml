@@ -117,7 +117,7 @@ docs = "https://antelang.org/docs/language/"
 
 [[showcase]]
 name = "RustPython"
-description = "A Python Interpreter written in Rust"
+description = "A Python Interpreter written in Rust."
 repo = "https://github.com/RustPython/RustPython/"
 docs = "https://rustpython.github.io/"
 
