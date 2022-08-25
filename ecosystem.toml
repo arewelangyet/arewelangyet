@@ -119,7 +119,7 @@ docs = "https://antelang.org/docs/language/"
 name = "RustPython"
 description = "A Python Interpreter written in Rust"
 repo = "https://github.com/RustPython/RustPython/"
-docs = "https://rustpython.github.io/docs/"
+docs = "https://rustpython.github.io/"
 
 [[showcase]]
 name = "Gleam"
