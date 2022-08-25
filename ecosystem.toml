@@ -131,5 +131,5 @@ docs = "https://gleam.run/documentation/"
 name = "Oak"
 description = "An infinitely more portable alternative to the C programming language."
 repo = "https://github.com/adam-mcdaniel/oakc"
-docs = "https://docs.rs/oakc/0.6.1/oakc/"
+docs = "https://docs.rs/oakc/"
 
