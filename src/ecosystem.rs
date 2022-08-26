@@ -85,31 +85,31 @@ pub fn add_project(source: &str, project: &Project) -> Result<String, Box<dyn Er
     let mut doc = fs::read_to_string(source)?.parse::<Document>()?;
 
     macro_rules! value_str {
-        ($value:block) => {
+        ($value:expr) => {
             Item::Value(Value::String(Formatted::new($value.to_string())))
         };
     }
     macro_rules! value_arr {
-        ($value:block) => {
+        ($value:expr) => {
             Item::Value(Value::Array(Array::from_iter($value)))
         };
     }
 
     let mut table = Table::new();
-    table.insert("name", value_str!({ &project.name }));
+    table.insert("name", value_str!(&project.name));
     if let Some(description) = &project.description {
-        table.insert("description", value_str!({ description }));
+        table.insert("description", value_str!(description));
     }
     if let Some(repo) = &project.repo {
-        table.insert("repo", value_str!({ repo }));
+        table.insert("repo", value_str!(repo));
     }
     if let Some(crates) = &project.crates {
-        table.insert("crates", value_arr!({ crates }));
+        table.insert("crates", value_arr!(crates));
     }
     if let Some(docs) = &project.docs {
-        table.insert("docs", value_str!({ docs }));
+        table.insert("docs", value_str!(docs));
     }
-    table.insert("topics", value_arr!({ &project.topics }));
+    table.insert("topics", value_arr!(&project.topics));
 
     doc["project"].as_array_of_tables_mut().unwrap().push(table);
 
