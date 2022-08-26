@@ -86,6 +86,13 @@ repo = "https://github.com/Kindelia/HVM"
 crates = ["hvm"]
 topics = ["runtime"]
 
+[[project]]
+name = "nom"
+description = "nom is a parser combinators library written in Rust. Its goal is to provide tools to build safe parsers without compromising the speed or memory consumption."
+repo = "https://github.com/Geal/nom"
+crates = ["nom"]
+topics = ["parsing"]
+
 [[showcase]]
 name = "AbleScript"
 description = "AbleScript is a procedural, cursed, dynamically-typed, interpreted programming language, designed to be bad."
