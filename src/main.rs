@@ -18,13 +18,19 @@ const STYLE_ROOT: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/assets/scss/theme
 fn main() {
     let opts = cli::parse();
 
-    match &opts.command {
+    match opts.command {
         cli::Commands::Build { target, cname } => build_site(&PathBuf::from(target), cname),
         cli::Commands::Clean { target } => clean_site(&PathBuf::from(target)),
+        cli::Commands::Add { project } => add_project(project),
     }
 }
 
-fn build_site(target: &Path, cname: &Option<String>) {
+fn add_project(project: ecosystem::Project) {
+    let toml = ecosystem::add_project(ECOSYSTEM_SOURCE_FILE, &project).unwrap();
+    fs::write(ECOSYSTEM_SOURCE_FILE, toml).unwrap();
+}
+
+fn build_site(target: &Path, cname: Option<String>) {
     // First of all, load up the ecosystem file.
     let ecosystem =
         ecosystem::parse(ECOSYSTEM_SOURCE_FILE).expect("Failed to parse ecosystem file.");
