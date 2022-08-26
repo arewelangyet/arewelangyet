@@ -10,6 +10,10 @@ description = "to be written"
 name = "REPL"
 description = "REPLs are a common way to interact with compilers by executing code statement by statement."
 
+[topics.runtime]
+name = "Runtimes"
+description = "Runtimes are targets for languages to lower their semantics to and execute programs with."
+
 [[project]]
 name = "logos"
 description = "Create ridiculously fast lexers."
@@ -54,8 +58,78 @@ repo = "https://github.com/jacklund/repl-rs"
 crates = ["repl-rs"]
 topics = ["repl"]
 
+[[project]]
+name = "cranelift"
+description = "Cranelift is a low-level retargetable code generator. It translates a target-independent intermediate representation into executable machine code."
+repo = "https://github.com/bytecodealliance/wasmtime/tree/main/cranelift"
+crates = ["cranelift-codegen", "cranelift-frontend", "cranelift-jit", "cranelift", "cranelift-module", "cranelift-codegen-meta", "cranelift-wasm", "cranelift-native", "cranelift-reader", "cranelift-object"]
+topics = ["runtime"]
+
+[[project]]
+name = "llvm-sys.rs"
+description = "Rust bindings to LLVM's C API."
+repo = "https://gitlab.com/taricorp/llvm-sys.rs"
+crates = ["llvm-sys"]
+topics = ["runtime"]
+
+[[project]]
+name = "Inkwell"
+description = "It's a New Kind of Wrapper for Exposing LLVM (Safely)"
+repo = "https://github.com/TheDan64/inkwell"
+crates = ["inkwell"]
+topics = ["runtime"]
+
+[[project]]
+name = "HVM"
+description = "A massively parallel, optimal functional runtime in Rust."
+repo = "https://github.com/Kindelia/HVM"
+crates = ["hvm"]
+topics = ["runtime"]
+
 [[showcase]]
 name = "AbleScript"
 description = "AbleScript is a procedural, cursed, dynamically-typed, interpreted programming language, designed to be bad."
 repo = "https://git.ablecorp.us/AbleScript/able-script"
 docs = "https://ablecorp.github.io/able-script-the-book/"
+
+[[showcase]]
+name = "Rust"
+description = "Empowering everyone to build reliable and efficient software."
+repo = "https://github.com/rust-lang/rust/"
+docs = "https://doc.rust-lang.org/stable/std/index.html"
+
+[[showcase]]
+name = "Roc"
+description = "A language for making delightful software. "
+repo = "https://github.com/roc-lang/roc"
+docs = "https://github.com/roc-lang/roc/blob/main/TUTORIAL.md"
+
+[[showcase]]
+name = "Scryer Prolog"
+description = "Scryer Prolog aims to become to ISO Prolog what GHC is to Haskell: an open source industrial strength production environment that is also a testbed for bleeding edge research in logic and constraint programming."
+repo = "https://github.com/mthom/scryer-prolog"
+
+[[showcase]]
+name = "Ante"
+description = "Ante is a low-level functional language for exploring refinement types, lifetime inference, and other fun features."
+repo = "https://github.com/jfecher/ante"
+docs = "https://antelang.org/docs/language/"
+
+[[showcase]]
+name = "RustPython"
+description = "A Python Interpreter written in Rust."
+repo = "https://github.com/RustPython/RustPython/"
+docs = "https://rustpython.github.io/"
+
+[[showcase]]
+name = "Gleam"
+description = "Gleam is a friendly language for building type-safe, scalable systems! It compiles to Erlang (or JavaScript) and has straightforward interop with other BEAM languages such as Erlang, Elixir, and LFE."
+repo = "https://github.com/gleam-lang/gleam"
+docs = "https://gleam.run/documentation/"
+
+[[showcase]]
+name = "Oak"
+description = "An infinitely more portable alternative to the C programming language."
+repo = "https://github.com/adam-mcdaniel/oakc"
+docs = "https://docs.rs/oakc/"
+
