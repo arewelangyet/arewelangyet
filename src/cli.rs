@@ -9,6 +9,11 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
+    /// Add a project to the ecosystem file
+    Add {
+        #[clap(flatten)]
+        project: crate::ecosystem::Project,
+    },
     /// Build the site.
     Build {
         /// The directory in which to build the site.
