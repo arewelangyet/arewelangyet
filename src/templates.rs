@@ -42,7 +42,7 @@ impl Function for UrlFor {
             None => return Err("required argument `name` not provided".into()),
         };
 
-        Ok(to_value(&self.resolve_url(&section, &name)?)?)
+        Ok(to_value(self.resolve_url(&section, &name)?)?)
     }
 
     fn is_safe(&self) -> bool {

@@ -5,7 +5,7 @@ use std::{
 };
 
 pub fn copy_dir_all(src: &Path, dst: &Path) -> Result<()> {
-    create_dir_all(&dst)?;
+    create_dir_all(dst)?;
     for entry in read_dir(src)? {
         let entry = entry?;
         if entry.file_type()?.is_dir() {
