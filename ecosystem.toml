@@ -1,18 +1,205 @@
+# This file contains the information for each project the site includes.
+#
+# The first section of the file includes the different topics and the projects.
+# The topics are each organized alphabetically, and divided by a divider line.
+# If a project fits into more than one topic, it's place in the one that comes
+# first alphabetically.
+#
+# The second section of the file holds the showcase. There's no particular
+# structure beyond an alphabetical ordering.
+
+# ==============================================================================
+
+[topics.codegen]
+name = "Code Generation"
+description = ""
+
+[[project]]
+name = "Cranelift"
+description = "A low-level retargetable code generator."
+repo = "https://github.com/bytecodealliance/wasmtime/tree/main/cranelift"
+docs = "https://github.com/bytecodealliance/wasmtime/blob/main/cranelift/docs/index.md"
+crates = [
+    "cranelift",
+    "cranelift-codegen",
+    "cranelift-frontend",
+    "cranelift-interpreter",
+    "cranelift-jit",
+    "cranelift-module",
+    "cranelift-native",
+    "cranelift-object",
+    "cranelift-reader",
+    "cranelift-serde",
+    "cranelift-wasm",
+]
+topics = ["codegen", "jit"]
+
+[[project]]
+name = "iced-x86"
+description = """
+A blazing fast and correct x86/x64 disassembler, assembler and instruction \
+decoder written in Rust.
+"""
+repo = "https://github.com/icedland/iced"
+crates = ["iced-x86"]
+topics = ["codegen", "jit"]
+
+[[project]]
+name = "inkwell"
+description = "It's a New Kind of Wrapper for Exposing LLVM (Safely)"
+repo = "https://github.com/TheDan64/inkwell"
+crates = ["inkwell"]
+topics = ["codegen"]
+
+[[project]]
+name = "llama"
+description = "A friendly LLVM library for Rust."
+repo = "https://github.com/zshipko/llama"
+crates = ["llama"]
+topics = ["codegen"]
+
+[[project]]
+name = "llvm-ir"
+description = "LLVM IR in natural Rust data structures."
+repo = "https://github.com/cdisselkoen/llvm-ir"
+crates = ["llvm-ir"]
+topics = ["codegen"]
+
+[[project]]
+name = "llvm-sys"
+description = "Rust bindings to LLVM's C API."
+repo = "Rust bindings to LLVM's C API."
+crates = ["llvm-sys"]
+topics = ["codegen"]
+
+[[project]]
+name = "Sericum"
+description = "A compiler infrastructure influenced by LLVM written in Rust."
+repo = "https://github.com/maekawatoshiki/sericum"
+topics = ["codegen"]
+
+[[project]]
+name = "walrus"
+description = "A library for performing WebAssembly transformations."
+repo = "https://github.com/rustwasm/walrus"
+crates = ["walrus"]
+topics = ["codegen"]
+
+# ==============================================================================
+
+[topics.errors]
+name = "Error Reporting"
+description = ""
+
+[[project]]
+name = "ariadne"
+description = "A fancy diagnostics & error reporting crate."
+repo = "https://github.com/zesterer/ariadne"
+crates = ["ariadne"]
+topics = ["errors"]
+
+[[project]]
+name = "codespan"
+description = "Beautiful diagnostic reporting for text-based programming languages."
+repo = "https://github.com/brendanzab/codespan"
+crates = [
+    "codespan",
+    "codespan-reporting",
+    "codespan-lsp",
+]
+topics = ["errors"]
+
+[[project]]
+name = "miette"
+description = """
+A fancy diagnostic reporting library and protocol for us mere mortals who \
+aren't compiler hackers.
+"""
+repo = "https://github.com/zkat/miette"
+crates = ["miette"]
+topics = ["errors"]
+
+# ==============================================================================
+[topics.gc]
+name = "Garbage Collection"
+description = ""
+
+[[project]]
+name = "broom"
+description = "An ergonomic tracing garbage collector that supports mark 'n sweep garbage collection."
+repo = "https://github.com/zesterer/broom"
+crates = ["broom"]
+topics = ["gc"]
+
+[[project]]
+name = "comet-gc"
+description = "A garbage collection library for implementing VMs in Rust."
+repo = "https://github.com/Starlight-JS/comet"
+crates = ["comet-gc"]
+topics = ["gc"]
+
+[[project]]
+name = "rust-gc"
+description = "A simple tracing (mark and sweep) garbage collector for Rust."
+repo = "https://github.com/Manishearth/rust-gc"
+crates = ["gc"]
+topics = ["gc"]
+
+[[project]]
+name = "shredder"
+description = "Garbage collection as a library for Rust."
+repo = "https://github.com/Others/shredder"
+crates = ["shredder"]
+topics = ["gc"]
+
+# ==============================================================================
+
+[topics.incremental]
+name = "Incremental Compilation"
+description = ""
+
+[[project]]
+name = "salsa"
+description = "A generic framework for on-demand, incrementalized computation."
+repo = "https://github.com/salsa-rs/salsa"
+docs = "https://salsa-rs.github.io/salsa/"
+crates = ["salsa"]
+topics = ["incremental"]
+
+# ==============================================================================
+
+# many of the topics found here have a large intersection with `codegen`
+
+[topics.jit]
+name = "Just-in-time Compilation"
+description = ""
+
+[[project]]
+name = "gccjit"
+description = "Rust bindings for libgccjit."
+repo = "https://github.com/swgillespie/gccjit.rs"
+crates = ["gccjit", "gccjit_sys"]
+topics = ["jit"]
+
+[[project]]
+name = "dynasm"
+description = "A dynasm-like tool for rust."
+repo = "https://github.com/CensoredUsername/dynasm-rs"
+crates = ["dynasm", "dynasmrt"]
+topics = ["jit"]
+
+# ==============================================================================
+
 [topics.lexing]
 name = "Lexing"
-description = "to be written"
+description = ""
 
-[topics.parsing]
-name = "Parsing"
-description = "to be written"
-
-[topics.repl]
-name = "REPL"
-description = "REPLs are a common way to interact with compilers by executing code statement by statement."
-
-[topics.runtime]
-name = "Runtimes"
-description = "Runtimes are targets for languages to lower their semantics to and execute programs with."
+[[project]]
+name = "lexgen"
+description = "A fully-featured lexer generator, implemented as a proc macro."
+repository = "https://github.com/osa1/lexgen"
+crates = ["lexgen"]
+topics = ["lexing"]
 
 [[project]]
 name = "logos"
@@ -23,33 +210,190 @@ topics = ["lexing"]
 
 [[project]]
 name = "lrlex"
-description = "A partial replacement for lex/flex."
-repo = "https://github.com/softdevteam/grmtools/tree/master/lrlex"
+description = "A simpler lexer generator. A replacement for lex and flex."
+repo = "https://github.com/softdevteam/grmtools"
+docs = "https://softdevteam.github.io/grmtools/master/book/"
 crates = ["lrlex"]
 topics = ["lexing"]
+
+# ==============================================================================
+
+[topics.lsp]
+name = "Language Server Protocol"
+description = ""
+
+[[project]]
+name = "lsp-types"
+description = "Types for interaction with a language server, using VSCode's Language Server Protocol."
+repo = "https://github.com/gluon-lang/lsp-types"
+crates = ["lsp-types"]
+topics = ["lsp"]
+
+[[project]]
+name = "lsp-server"
+description = "A language server scaffold exposing a crossbeam-channel API."
+repo = "https://github.com/rust-lang/rust-analyzer/tree/master/lib/lsp-server"
+crates = ["lsp-server"]
+topics = ["lsp"]
+
+[[project]]
+name = "tower-lsp"
+description = "A Language Server Protocol implementation based on Tower."
+repo = "https://github.com/ebkalderon/tower-lsp"
+crates = ["tower-lsp"]
+topics = ["lsp"]
+
+# ==============================================================================
+
+[topics.optimization]
+name = "Optimization"
+description = ""
+
+[[project]]
+name = "egg"
+description = "A flexible, high-performance e-graph library."
+repo = "https://github.com/egraphs-good/egg"
+crates = ["egg"]
+topics = ["optimization"]
+
+[[project]]
+name = "peepmatic"
+description = "A DSL and compiler for generating peephole optimizers."
+crates = ["peepmatic"]
+topics = ["optimization"]
+
+# ==============================================================================
+
+[topics.parsing]
+name = "Parsing"
+description = ""
+
+[[project]]
+name = "chomp"
+description = "A fast monadic-style parser combinator designed to work on stable Rust."
+repo = "http://github.com/m4rw3r/chomp"
+crates = ["chomp"]
+topics = ["parsing"]
+
+[[project]]
+name = "chumsky"
+description = "A parser library for humans with powerful error recovery."
+repo = "https://github.com/zesterer/chumsky"
+crates = ["chumsky"]
+topics = ["parsing"]
+
+[[project]]
+name = "combine"
+description = "Fast parser combinators on arbitrary streams with zero-copy support."
+repo = "https://github.com/Marwes/combine"
+crates = ["combine"]
+topics = ["parsing"]
+
+[[project]]
+name = "cstree"
+description = "A library for creating and working with concrete syntax trees (CSTs)."
+repo = "https://github.com/domenicquirl/cstree"
+crates = ["cstree"]
+topics = ["parsing"]
+
+[[project]]
+name = "glue"
+description = """
+A parser combinator framework for parsing text based formats. It is easy to \
+use and relatively fast too.
+"""
+crates = ["glue"]
+topics = ["parsing"]
 
 [[project]]
 name = "LALRPOP"
 description = "A convenient LR(1) parser generator."
 repo = "https://github.com/lalrpop/lalrpop"
-crates = ["lalrpop", "lalrpop-util"]
 docs = "https://lalrpop.github.io/lalrpop/"
+crates = ["lalrpop", "lalrpop-util"]
 topics = ["parsing"]
 
 [[project]]
-name = "chumsky"
-description = " A parser library for humans with powerful error recovery."
-repo = "https://github.com/zesterer/chumsky/"
-crates = ["chumsky"]
-docs = "https://github.com/zesterer/chumsky/blob/master/tutorial.md"
+name = "lrpar"
+description = "A Yacc-compatible parser generator."
+repo = "https://github.com/softdevteam/grmtools"
+docs = "https://softdevteam.github.io/grmtools/master/book/"
+crates = ["lrpar"]
 topics = ["parsing"]
 
 [[project]]
-name = "rustyline"
-description = "A readline implementation in Rust."
-repo = "https://github.com/kkawakam/rustyline"
-crates = ["rustyline"]
-topics = ["repl"]
+name = "nom"
+description = "A byte-oriented, zero-copy, parser combinators library."
+repo = "https://github.com/Geal/nom"
+crates = ["nom"]
+topics = ["parsing"]
+
+[[project]]
+name = "oak"
+description = "A typed parser generator syntax extension for Parsing Expression Grammar (PEG)."
+repo = "https://github.com/ptal/oak"
+crates = ["oak"]
+topics = ["parsing"]
+
+[[project]]
+name = "peg"
+description = "A simple Parsing Expression Grammar (PEG) parser generator."
+repo = "https://github.com/kevinmehall/rust-peg"
+crates = ["peg"]
+topics = ["parsing"]
+
+[[project]]
+name = "pest"
+description = """
+Aa general purpose parser written in Rust with a focus on accessibility, \
+correctness, and performance.
+"""
+repo = "https://github.com/pest-parser/pest"
+docs = "https://pest.rs/"
+crates = ["pest"]
+topics = ["parsing"]
+
+[[project]]
+name = "pom"
+description = "PEG parser combinators using operator overloading without macros."
+repo = "https://github.com/J-F-Liu/pom"
+crates = ["pom"]
+topics = ["parsing"]
+
+[[project]]
+name = "pratt"
+description = "A general-purpose Pratt parser for Rust."
+repo = "https://github.com/segeljakt/pratt/"
+crates = ["pratt"]
+topics = ["parsing"]
+
+[[project]]
+name = "rowan"
+description = "A library for lossless syntax trees."
+repo = "https://github.com/rust-analyzer/rowan"
+crates = ["rowan"]
+topics = ["parsing"]
+
+[[project]]
+name = "tree-sitter"
+description = "An incremental parsing system for programming tools."
+repo = "https://github.com/tree-sitter/tree-sitter"
+docs = "https://tree-sitter.github.io/tree-sitter/"
+crates = ["tree-sitter"]
+topics = ["parsing"]
+
+[[project]]
+name = "ungrammar"
+description = "A DSL for describing concrete syntax trees."
+repo = "https://github.com/matklad/ungrammar"
+crates = ["ungrammar"]
+topics = ["parsing"]
+
+# ==============================================================================
+
+[topics.repl]
+name = "Read-eval-print Loops"
+description = ""
 
 [[project]]
 name = "repl-rs"
@@ -59,39 +403,46 @@ crates = ["repl-rs"]
 topics = ["repl"]
 
 [[project]]
-name = "cranelift"
-description = "Cranelift is a low-level retargetable code generator. It translates a target-independent intermediate representation into executable machine code."
-repo = "https://github.com/bytecodealliance/wasmtime/tree/main/cranelift"
-crates = ["cranelift-codegen", "cranelift-frontend", "cranelift-jit", "cranelift", "cranelift-module", "cranelift-codegen-meta", "cranelift-wasm", "cranelift-native", "cranelift-reader", "cranelift-object"]
-topics = ["runtime"]
+name = "rustyline"
+description = "A readline implementation based on Antirez's Linenoise."
+repo = "https://github.com/kkawakam/rustyline"
+crates = ["rustyline"]
+topics = ["repl"]
 
-[[project]]
-name = "llvm-sys.rs"
-description = "Rust bindings to LLVM's C API."
-repo = "https://gitlab.com/taricorp/llvm-sys.rs"
-crates = ["llvm-sys"]
-topics = ["runtime"]
+# ==============================================================================
 
-[[project]]
-name = "Inkwell"
-description = "It's a New Kind of Wrapper for Exposing LLVM (Safely)"
-repo = "https://github.com/TheDan64/inkwell"
-crates = ["inkwell"]
-topics = ["runtime"]
+[topics.runtimes]
+name = "Runtimes"
+description = ""
 
 [[project]]
 name = "HVM"
 description = "A massively parallel, optimal functional runtime in Rust."
 repo = "https://github.com/Kindelia/HVM"
 crates = ["hvm"]
-topics = ["runtime"]
+topics = ["runtimes"]
+
+# ==============================================================================
+
+[topics.tyck]
+name = "Type Checking"
+description = ""
 
 [[project]]
-name = "nom"
-description = "nom is a parser combinators library written in Rust. Its goal is to provide tools to build safe parsers without compromising the speed or memory consumption."
-repo = "https://github.com/Geal/nom"
-crates = ["nom"]
-topics = ["parsing"]
+name = "rusttyc"
+description = "A library for writing type checkers with a lattice-like type system in Rust."
+repo = "https://github.com/Schwenger/RustTyC/"
+crates = ["rusttyc"]
+topics = ["tyck"]
+
+[[project]]
+name = "polytype"
+description = "A Hindley-Milner polymorphic typing system."
+repo = "https://github.com/lucasem/polytype-rs"
+crates = ["polytype"]
+topics = ["tyck"]
+
+# ==============================================================================
 
 [[showcase]]
 name = "AbleScript"
@@ -100,33 +451,10 @@ repo = "https://git.ablecorp.us/AbleScript/able-script"
 docs = "https://ablecorp.github.io/able-script-the-book/"
 
 [[showcase]]
-name = "Rust"
-description = "Empowering everyone to build reliable and efficient software."
-repo = "https://github.com/rust-lang/rust/"
-docs = "https://doc.rust-lang.org/stable/std/index.html"
-
-[[showcase]]
-name = "Roc"
-description = "A language for making delightful software. "
-repo = "https://github.com/roc-lang/roc"
-docs = "https://github.com/roc-lang/roc/blob/main/TUTORIAL.md"
-
-[[showcase]]
-name = "Scryer Prolog"
-description = "Scryer Prolog aims to become to ISO Prolog what GHC is to Haskell: an open source industrial strength production environment that is also a testbed for bleeding edge research in logic and constraint programming."
-repo = "https://github.com/mthom/scryer-prolog"
-
-[[showcase]]
 name = "Ante"
 description = "Ante is a low-level functional language for exploring refinement types, lifetime inference, and other fun features."
 repo = "https://github.com/jfecher/ante"
 docs = "https://antelang.org/docs/language/"
-
-[[showcase]]
-name = "RustPython"
-description = "A Python Interpreter written in Rust."
-repo = "https://github.com/RustPython/RustPython/"
-docs = "https://rustpython.github.io/"
 
 [[showcase]]
 name = "Gleam"
@@ -140,3 +468,25 @@ description = "An infinitely more portable alternative to the C programming lang
 repo = "https://github.com/adam-mcdaniel/oakc"
 docs = "https://docs.rs/oakc/"
 
+[[showcase]]
+name = "Roc"
+description = "A language for making delightful software. "
+repo = "https://github.com/roc-lang/roc"
+docs = "https://github.com/roc-lang/roc/blob/main/TUTORIAL.md"
+
+[[showcase]]
+name = "RustPython"
+description = "A Python interpreter written in Rust."
+repo = "https://github.com/RustPython/RustPython/"
+docs = "https://rustpython.github.io/"
+
+[[showcase]]
+name = "Rust"
+description = "Empowering everyone to build reliable and efficient software."
+repo = "https://github.com/rust-lang/rust/"
+docs = "https://doc.rust-lang.org/stable/std/index.html"
+
+[[showcase]]
+name = "Scryer Prolog"
+description = "Scryer Prolog aims to become to ISO Prolog what GHC is to Haskell: an open source industrial strength production environment that is also a testbed for bleeding edge research in logic and constraint programming."
+repo = "https://github.com/mthom/scryer-prolog"
