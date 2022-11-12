@@ -12,7 +12,7 @@ pub enum Commands {
     /// Add a project to the ecosystem file
     Add {
         #[clap(flatten)]
-        project: crate::ecosystem::Project,
+        project: crate::ecosystem::ProjectSrc,
     },
     /// Build the site.
     Build {

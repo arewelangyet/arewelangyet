@@ -7,7 +7,7 @@ use toml_edit::{Array, Document, Formatted, Item, Table, Value};
 struct EcosystemSrc {
     topics: HashMap<String, TopicSrc>,
     #[serde(rename = "project")]
-    projects: Vec<Project>,
+    projects: Vec<ProjectSrc>,
     showcase: Vec<ShowcaseExhibit>,
 }
 
@@ -17,8 +17,8 @@ pub struct Ecosystem {
     pub showcase: Vec<ShowcaseExhibit>,
 }
 
-#[derive(Args, Clone, Serialize, Deserialize)]
-pub struct Project {
+#[derive(Args, Clone, Deserialize)]
+pub struct ProjectSrc {
     /// The name of the project
     pub name: String,
     /// The description of the project
@@ -37,6 +37,42 @@ pub struct Project {
     /// Topics which this crate falls under (e.g. lexing, parsing)
     #[clap(name = "TOPIC", long = "topic", short = 't')]
     pub topics: Vec<String>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct Project {
+    pub name: String,
+    pub description: Option<String>,
+    pub repo: Option<String>,
+    // we have both so that if there's only one, we can collapse it
+    pub only_crate: Option<String>,
+    pub crates: Option<Vec<String>>,
+    pub docs: Option<String>,
+    pub topics: Vec<String>,
+}
+
+impl From<ProjectSrc> for Project {
+    fn from(src: ProjectSrc) -> Self {
+        let (only_crate, crates) = if let Some(crates) = src.crates {
+            if crates.len() == 1 {
+                (Some(crates[0].clone()), None)
+            } else {
+                (None, Some(crates))
+            }
+        } else {
+            (None, None)
+        };
+
+        Self {
+            name: src.name,
+            description: src.description,
+            repo: src.repo,
+            only_crate,
+            crates,
+            docs: src.docs,
+            topics: src.topics,
+        }
+    }
 }
 
 #[derive(Deserialize)]
@@ -74,14 +110,16 @@ pub fn parse(source: &str) -> Result<Ecosystem, Box<dyn Error>> {
         .collect();
     topics.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
 
+    let projects = parsed_data.projects.into_iter().map(Into::into).collect();
+
     Ok(Ecosystem {
-        projects: parsed_data.projects,
+        projects,
         topics,
         showcase: parsed_data.showcase,
     })
 }
 
-pub fn add_project(source: &str, project: &Project) -> Result<String, Box<dyn Error>> {
+pub fn add_project(source: &str, project: &ProjectSrc) -> Result<String, Box<dyn Error>> {
     let mut doc = fs::read_to_string(source)?.parse::<Document>()?;
 
     macro_rules! value_str {

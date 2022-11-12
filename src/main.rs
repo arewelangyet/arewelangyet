@@ -25,7 +25,7 @@ fn main() {
     }
 }
 
-fn add_project(project: ecosystem::Project) {
+fn add_project(project: ecosystem::ProjectSrc) {
     let toml = ecosystem::add_project(ECOSYSTEM_SOURCE_FILE, &project).unwrap();
     fs::write(ECOSYSTEM_SOURCE_FILE, toml).unwrap();
 }
