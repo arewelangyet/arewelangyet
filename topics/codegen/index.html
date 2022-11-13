@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Code Generation</title>
+    
+    
+
+    <meta name="description" content="The state of language development in Rust." />
+    
+    
+
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="/theme.css">
+</head>
+<body>
+    <nav>
+
+    </nav>
+    <div class="content">
+<h1>Code Generation</h1>
+<p></p>
+
+
+    <h2>
+        Cranelift
+        
+            <a title="documentation" href="https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wasmtime&#x2F;blob&#x2F;main&#x2F;cranelift&#x2F;docs&#x2F;index.md"><img class="icon" src="/assets/icons/home.svg" alt="documentation"></img></a>
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;bytecodealliance&#x2F;wasmtime&#x2F;tree&#x2F;main&#x2F;cranelift"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+    </h2>
+
+    
+        <p>A low-level retargetable code generator.</p>
+    
+    
+    
+    <h3>Crates:</h3>
+    <ul>
+        
+            <li>
+                cranelift
+                <a title="crates.io link" href="https://crates.io/crates/cranelift"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-codegen
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-codegen"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-codegen"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-frontend
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-frontend"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-frontend"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-interpreter
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-interpreter"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-interpreter"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-jit
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-jit"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-jit"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-module
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-module"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-module"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-native
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-native"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-native"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-object
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-object"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-object"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-reader
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-reader"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-reader"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-serde
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-serde"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-serde"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+            <li>
+                cranelift-wasm
+                <a title="crates.io link" href="https://crates.io/crates/cranelift-wasm"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+                <a title="docs.rs link" href="https://docs.rs/cranelift-wasm"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+            </li>
+        
+    </ul>
+    
+
+    <h2>
+        iced-x86
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;icedland&#x2F;iced"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/iced-x86"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/iced-x86"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>A blazing fast and correct x86&#x2F;x64 disassembler, assembler and instruction decoder written in Rust.
+</p>
+    
+    
+    
+
+    <h2>
+        inkwell
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;TheDan64&#x2F;inkwell"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/inkwell"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/inkwell"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>It&#x27;s a New Kind of Wrapper for Exposing LLVM (Safely)</p>
+    
+    
+    
+
+    <h2>
+        llama
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;zshipko&#x2F;llama"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/llama"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/llama"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>A friendly LLVM library for Rust.</p>
+    
+    
+    
+
+    <h2>
+        llvm-ir
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;cdisselkoen&#x2F;llvm-ir"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/llvm-ir"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/llvm-ir"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>LLVM IR in natural Rust data structures.</p>
+    
+    
+    
+
+    <h2>
+        llvm-sys
+        
+        
+            <a title="repository" href="Rust bindings to LLVM&#x27;s C API."><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/llvm-sys"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/llvm-sys"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>Rust bindings to LLVM&#x27;s C API.</p>
+    
+    
+    
+
+    <h2>
+        Sericum
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;maekawatoshiki&#x2F;sericum"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+    </h2>
+
+    
+        <p>A compiler infrastructure influenced by LLVM written in Rust.</p>
+    
+    
+    
+
+    <h2>
+        walrus
+        
+        
+            <a title="repository" href="https:&#x2F;&#x2F;github.com&#x2F;rustwasm&#x2F;walrus"><img class="icon" src="/assets/icons/code.svg" alt="repository"></img></a>
+        
+        
+            <a title="crates.io link" href="https://crates.io/crates/walrus"><img class="icon" src="/assets/icons/repo.svg" alt="crates.io link"></img></a>
+            <a title="docs.rs link" href="https://docs.rs/walrus"><img class="icon" src="/assets/icons/book.svg" alt="docs.rs link"></img></a>
+        
+    </h2>
+
+    
+        <p>A library for performing WebAssembly transformations.</p>
+    
+    
+    
+
+
+</div>
+</body>
+</html>
