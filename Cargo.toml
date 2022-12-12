@@ -9,4 +9,4 @@ edition = "2021"
 clap = { version = "3.2.20", features = ["derive"] }
 tera = { version = "1.17.1" }
 serde = { version = "1.0.149", features = ["derive"] }
-toml_edit = { version = "0.14", features = ["easy"] }
+toml_edit = { version = "0.15", features = ["easy"] }
