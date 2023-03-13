@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.1.4", features = ["derive"] }
 tera = { version = "1.17.1" }
-serde = { version = "1.0.152", features = ["derive"] }
+serde = { version = "1.0.155", features = ["derive"] }
 toml_edit = { version = "0.18", features = ["easy"] }
